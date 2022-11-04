@@ -2,7 +2,10 @@
     <string name="app_name">MyRecipes</string>
     <string name="create_main">Create Recipe</string>
     <string name="view_main">View Recipe(s)</string>
-    <string name="title_main">My Recipes</string>
+    <string name="title_main">MyRecipes</string>
     <string name="back_to_main">Main Menu</string>
+    <string name="prompt_recipe_name_create">Enter recipe name</string>
     <string name="title_create">Create Recipe</string>
+    <string name="name_create">Recipe\nName:</string>
+    <string name="save_create">Save Recipe</string>
 </resources>
