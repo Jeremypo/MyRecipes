@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MyRecipes</string>
+    <string name="create_main">Create Recipe</string>
+    <string name="view_main">View Recipe(s)</string>
+    <string name="title_main">My Recipes</string>
+    <string name="back_to_main">Main Menu</string>
+    <string name="title_create">Create Recipe</string>
+</resources>
