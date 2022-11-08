@@ -31,9 +31,12 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="396dp"
-        android:layout_height="126dp"
+        android:id="@+id/constraintHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +46,7 @@
             android:id="@+id/title_create"
             android:layout_width="126dp"
             android:layout_height="93dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="0dp"
             android:gravity="center"
             android:text="@string/name_create"
             android:textAlignment="center"
@@ -55,16 +58,63 @@
 
         <EditText
             android:id="@+id/inputRecipeName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
             android:ems="10"
-            android:inputType="textPersonName"
             android:hint="@string/prompt_recipe_name_create"
+            android:inputType="textPersonName"
             android:text=""
-            android:textSize="20sp"
+            android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/title_create"
             app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintBody"
+        android:layout_margin="16dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/back_to_main_create"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintHeader">
+
+        <ScrollView
+            android:id="@+id/scroll_view"
+            android:layout_margin="0dp"
+            android:layout_height="1000dp"
+            android:layout_width="match_parent"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/ingredient_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:hint="@string/prompt_ingredient_name"
+                    android:text=""/>
+
+                <!--
+                <TextView
+                    android:id="@+id/ingredient_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:text="@string/prompt_ingredient_amount"/>
+                <TextView
+                    android:id="@+id/ingredient_units"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:text="@string/prompt_ingredient_units"/>
+                -->
+            </LinearLayout>
+        </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

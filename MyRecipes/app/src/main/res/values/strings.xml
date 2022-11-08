@@ -5,7 +5,10 @@
     <string name="title_main">MyRecipes</string>
     <string name="back_to_main">Main Menu</string>
     <string name="prompt_recipe_name_create">Enter recipe name</string>
+    <string name="prompt_ingredient_name">Enter ingredient</string>
     <string name="title_create">Create Recipe</string>
     <string name="name_create">Recipe\nName:</string>
     <string name="save_create">Save Recipe</string>
+    <string name="prompt_ingredient_amount">quantity</string>
+    <string name="prompt_ingredient_units">units</string>
 </resources>

@@ -27,6 +27,13 @@ public class CreateRecipeActivity extends AppCompatActivity {
         mainMenuButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                //if not empty
+                    //exit without saving? y/n
+                        //if yes
+                            //finish();
+                        //if no
+                            //do nothing
+                //if empty
                 finish();
             }
         });
