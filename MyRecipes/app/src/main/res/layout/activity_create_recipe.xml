@@ -44,12 +44,12 @@
 
         <TextView
             android:id="@+id/title_create"
-            android:layout_width="126dp"
-            android:layout_height="93dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
+            android:paddingRight="16dp"
             android:gravity="center"
             android:text="@string/name_create"
-            android:textAlignment="center"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -81,40 +81,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintHeader">
 
-        <ScrollView
-            android:id="@+id/scroll_view"
-            android:layout_margin="0dp"
-            android:layout_height="1000dp"
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            tools:layout_editor_absoluteX="1dp"
-            tools:layout_editor_absoluteY="1dp">
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <EditText
-                    android:id="@+id/ingredient_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="24sp"
-                    android:hint="@string/prompt_ingredient_name"
-                    android:text=""/>
-
-                <!--
-                <TextView
-                    android:id="@+id/ingredient_amount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="24sp"
-                    android:text="@string/prompt_ingredient_amount"/>
-                <TextView
-                    android:id="@+id/ingredient_units"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="24sp"
-                    android:text="@string/prompt_ingredient_units"/>
-                -->
-            </LinearLayout>
-        </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
+            <!--
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <EditText
+                                android:id="@+id/ingredient_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="24sp"
+                                android:hint="@string/prompt_ingredient_name"
+                                android:text=""/>
+
+
+                            <TextView
+                                android:id="@+id/ingredient_amount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="24sp"
+                                android:text="@string/prompt_ingredient_amount"/>
+                            <TextView
+                                android:id="@+id/ingredient_units"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="24sp"
+                                android:text="@string/prompt_ingredient_units"/>
+        -->
 </androidx.constraintlayout.widget.ConstraintLayout>
