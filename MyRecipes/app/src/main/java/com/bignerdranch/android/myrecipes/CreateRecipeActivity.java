@@ -1,6 +1,9 @@
 package com.bignerdranch.android.myrecipes;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,18 +11,43 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.ArrayList;
+
 public class CreateRecipeActivity extends AppCompatActivity {
     EditText inputRecipeName;
+    ArrayList<IngredientModel> ingredientModels = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_recipe);
 
+        RecyclerView recyclerView = findViewById(R.id.ingredient_list_view);
+
         configureBackToMainButton();
         configureSaveButton();
 
+        Button addIngredientButton = (Button) findViewById(R.id.add_ingredient_button);
+        addIngredientButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                addIngredient(recyclerView);
+            }
+        });
+
+        addIngredient(recyclerView);
+
+        configureRecycler(recyclerView);
+    }
+
+    private void configureRecycler(RecyclerView recyclerView){
         inputRecipeName = (EditText) findViewById(R.id.inputRecipeName);
+
+        IngredientRecyclerViewAdapter adapter = new IngredientRecyclerViewAdapter(this,
+                ingredientModels);
+
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     private void configureBackToMainButton() {
@@ -47,6 +75,11 @@ public class CreateRecipeActivity extends AppCompatActivity {
                 saveRecipe();
             }
         });
+    }
+
+    private void addIngredient(RecyclerView recyclerView){
+        ingredientModels.add(new IngredientModel());
+        configureRecycler(recyclerView);
     }
 
     private void saveRecipe(){
