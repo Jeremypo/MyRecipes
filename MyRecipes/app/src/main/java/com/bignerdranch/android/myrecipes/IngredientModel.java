@@ -5,32 +5,31 @@ import android.os.Parcelable;
 
 public class IngredientModel implements Parcelable {
     String inName;
-    Double inQuantity;
+    String inQuantity;
     String inUnits;
 
     //defaults
-    private final String DEF_NAME = "ingredient name";
-    private final Double DEF_QUANTITY = 1.0;
-    private final String DEF_UNIT = "units";
+    private final String DEF_EMPTY = "";
+    private final String DEF_QUANTITY = "1.0";
 
-    public IngredientModel(String inName, Double inQuantity, String inUnits) {
+    public IngredientModel(String inName, String inQuantity, String inUnits) {
         this.inName = inName;
         this.inQuantity = inQuantity;
         this.inUnits = inUnits;
     }
 
     public IngredientModel(){
-        this.inName = DEF_NAME;
+        this.inName = DEF_EMPTY;
         this.inQuantity = DEF_QUANTITY;
-        this.inUnits = DEF_UNIT;
+        this.inUnits = DEF_EMPTY;
     }
 
     protected IngredientModel(Parcel in) {
         this.inName = in.readString();
         if (in.readByte() == 0) {
-            this.inQuantity = null;
+            this.inQuantity = DEF_QUANTITY;
         } else {
-            this.inQuantity = in.readDouble();
+            this.inQuantity = in.readString();
         }
         this.inUnits = in.readString();
     }
@@ -59,11 +58,11 @@ public class IngredientModel implements Parcelable {
         this.inName = inName;
     }
 
-    public Double getInQuantity() {
+    public String getInQuantity() {
         return inQuantity;
     }
 
-    public void setInQuantity(Double inQuantity) {
+    public void setInQuantity(String inQuantity) {
         this.inQuantity = inQuantity;
     }
 
@@ -83,7 +82,10 @@ public class IngredientModel implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(inName);
-        parcel.writeDouble(inQuantity);
+        if(inQuantity.equals("."))
+            parcel.writeString(DEF_QUANTITY);
+        else
+            parcel.writeString(inQuantity);
         parcel.writeString(inUnits);
     }
 }

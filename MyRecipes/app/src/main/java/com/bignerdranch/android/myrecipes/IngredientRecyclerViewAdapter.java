@@ -1,14 +1,14 @@
 package com.bignerdranch.android.myrecipes;
 
-import android.annotation.SuppressLint;
+
 import android.content.Context;
-import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,20 +36,64 @@ public class IngredientRecyclerViewAdapter extends RecyclerView.Adapter<Ingredie
     }
 
     @Override
-    public void onBindViewHolder(@NonNull IngredientRecyclerViewAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-
+    public void onBindViewHolder(@NonNull IngredientRecyclerViewAdapter.MyViewHolder holder, int position) {
+        IngredientModel model = ingredientModels.get(holder.getAdapterPosition());
         //assigns values to each row
         //based on position of the recycler view
-        holder.tvName.setText(ingredientModels.get(position).getInName());
-        holder.tvQuantity.setText(ingredientModels.get(position).getInQuantity().toString());
-        holder.tvUnits.setText(ingredientModels.get(position).getInUnits());
+        holder.tvName.setText(model.getInName());
+        if(model.getInQuantity().equals(".") || model.getInQuantity().equals(""))
+            holder.tvQuantity.setText("1.0");
+        else{
+            Double num = Double.parseDouble(model.getInQuantity());
+            holder.tvQuantity.setText(num.toString());
+        }
+        holder.tvUnits.setText(model.getInUnits());
         holder.deleteButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                ingredientModels.remove(ingredientModels.indexOf(ingredientModels.get(position)));
+                ingredientModels.remove(model);
+                notifyItemRemoved(holder.getAdapterPosition());
             }
         });
 
+
+        holder.tvName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int i, int i1, int i2) {}
+            @Override
+            public void onTextChanged(CharSequence s, int i, int i1, int i2) {
+                ingredientModels.get(holder.getAdapterPosition()).setInName(s.toString());
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {}
+        });
+
+        holder.tvQuantity.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int i, int i1, int i2) {}
+            @Override
+            public void onTextChanged(CharSequence s, int i, int i1, int i2) {
+                if(s.length() == 1 && s.charAt(0) == ('.'))
+                    ingredientModels.get(holder.getAdapterPosition()).setInQuantity(s.toString());
+                else if(s.length() > 0)
+                    ingredientModels.get(holder.getAdapterPosition()).setInQuantity(s.toString());
+                else
+                    ingredientModels.get(holder.getAdapterPosition()).setInQuantity("1.0");
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {}
+        });
+
+        holder.tvUnits.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int i, int i1, int i2) {}
+            @Override
+            public void onTextChanged(CharSequence s, int i, int i1, int i2) {
+                ingredientModels.get(holder.getAdapterPosition()).setInUnits(s.toString());
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {}
+        });
     }
 
     @Override
@@ -70,6 +114,8 @@ public class IngredientRecyclerViewAdapter extends RecyclerView.Adapter<Ingredie
             tvQuantity = itemView.findViewById(R.id.quantity_ingredient);
             tvUnits = itemView.findViewById(R.id.unit_ingredient);
             deleteButton = itemView.findViewById(R.id.delete_button);
+
+            //deleteButton.setOnClickListener();
         }
     }
 }
