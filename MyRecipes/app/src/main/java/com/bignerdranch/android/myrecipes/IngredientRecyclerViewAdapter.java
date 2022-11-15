@@ -2,9 +2,11 @@ package com.bignerdranch.android.myrecipes;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -58,7 +60,7 @@ public class IngredientRecyclerViewAdapter extends RecyclerView.Adapter<Ingredie
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView tvName, tvQuantity, tvUnits;
+        EditText tvName, tvQuantity, tvUnits;
         ImageButton deleteButton;
 
         public MyViewHolder(@NonNull View itemView) {

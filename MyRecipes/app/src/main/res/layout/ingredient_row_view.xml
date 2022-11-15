@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             android:paddingVertical="16dp">
 
-            <TextView
+            <EditText
                 android:id="@+id/name_ingredient"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <EditText
                 android:id="@+id/quantity_ingredient"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.51" />
 
-            <TextView
+            <EditText
                 android:id="@+id/unit_ingredient"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

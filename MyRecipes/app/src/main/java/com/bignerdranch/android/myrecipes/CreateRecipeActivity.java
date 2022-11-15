@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,6 +38,20 @@ public class CreateRecipeActivity extends AppCompatActivity {
 
         addIngredient(recyclerView);
 
+        configureRecycler(recyclerView);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState){
+        savedInstanceState.putParcelableArrayList("ingredientModels", ingredientModels);
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState){
+        super.onRestoreInstanceState(savedInstanceState);
+        ingredientModels = savedInstanceState.getParcelableArrayList("ingredientModels");
+        RecyclerView recyclerView = findViewById(R.id.ingredient_list_view);
         configureRecycler(recyclerView);
     }
 
