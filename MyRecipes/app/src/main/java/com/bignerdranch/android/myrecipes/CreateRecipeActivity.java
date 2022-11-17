@@ -5,18 +5,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CreateRecipeActivity extends AppCompatActivity {
-    EditText inputRecipeName;
-    ArrayList<IngredientModel> ingredientModels = new ArrayList<>();
-
+    private EditText inputRecipeName;
+    private ArrayList<IngredientModel> ingredientModels = new ArrayList<>();
+    private HashMap<String, ArrayList<IngredientModel>> saveData = new HashMap<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +85,7 @@ public class CreateRecipeActivity extends AppCompatActivity {
 
                     builder.setCancelable(true);
                     builder.setTitle("Warning!");
-                    builder.setMessage("Exit without saving?");
+                    builder.setMessage("Are you sure you want to exit?");
 
                     builder.setNegativeButton("Don't Exit", new DialogInterface.OnClickListener() {
                         @Override
@@ -83,26 +94,17 @@ public class CreateRecipeActivity extends AppCompatActivity {
                         }
                     });
 
-                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener(){
+                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            //alertTextView.setVisibility(View.VISIBLE);
                             finish();
                         }
                     });
                     builder.show();
                 }
 
-                //if not empty
-
-                    //exit without saving? y/n
-                        //if yes
-                            //finish();
-                        //if no
-                            //do nothing
-                //if empty
-                    else
-                        finish();
+                else
+                    finish();
             }
         });
     }
@@ -123,19 +125,73 @@ public class CreateRecipeActivity extends AppCompatActivity {
     }
 
     private void saveRecipe(){
-        //validate input
-            //if valid
-                //if exits
-                    //prompt override
-                        //if yes
-                            //save to data
-                            //exit
-                        //if no
-                            //do nothing
-                //if does not exist already
-                    //save to data
-                    //exit
-            //else
-                //error message
+        File file = new File(getDir("data", MODE_PRIVATE), "recipes");
+        if(!file.exists())
+            System.out.println("file DNE");
+        else {
+            ObjectInputStream inputStream = null;
+            try {
+                inputStream = new ObjectInputStream(new FileInputStream(file));
+                saveData = (HashMap<String, ArrayList<IngredientModel>>)inputStream.readObject();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
+        //if blank string, replaces with default recipe name
+        String key = (inputRecipeName.getText().toString().trim().length() == 0) ? "Nameless Recipe" : inputRecipeName.getText().toString();
+
+        if(!saveData.containsKey(key)) {
+            saveData.put(key, ingredientModels);
+            makeToast("\"" + key + "\" saved.");
+        }
+        else{
+            AlertDialog.Builder builder = new AlertDialog.Builder(CreateRecipeActivity.this);
+
+            builder.setCancelable(true);
+            builder.setTitle("Warning!");
+            builder.setMessage("Recipe already exists! Saving will overwrite old recipe data!");
+
+            builder.setNegativeButton("Continue Editing", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.cancel();
+                }
+            });
+
+            builder.setPositiveButton("Save Anyway", new DialogInterface.OnClickListener(){
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    saveData.put(key, ingredientModels);
+                    makeToast("\"" + key + "\" overwritten.");
+                    dialogInterface.cancel();
+                }
+            });
+            builder.show();
+        }
+
+        ObjectOutputStream outputStream = null;
+        try {
+            outputStream = new ObjectOutputStream(new FileOutputStream(file));
+            outputStream.writeObject(saveData);
+            outputStream.flush();
+            outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Keys:");
+        for (String keys: saveData.keySet()){
+            System.out.println(keys);
+        }
     }
+
+    private void makeToast(String msg){
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, msg, duration);
+        toast.show();
+    }
+
 }
