@@ -8,8 +8,9 @@
 
     <Button
         android:id="@+id/create_main"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:padding="8dp"
         android:text="@string/create_main"
         android:textAllCaps="false"
         android:textSize="20sp"
@@ -20,22 +21,36 @@
 
     <Button
         android:id="@+id/view_main"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:padding="8dp"
+        android:layout_marginTop="4dp"
         android:text="@string/view_main"
         android:textAllCaps="false"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/create_main" />
 
+    <Button
+        android:id="@+id/grocery_main"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/grocery_main"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_main" />
+
     <TextView
         android:id="@+id/title_main"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
+        android:gravity="center"
         android:text="@string/title_main"
         android:textAllCaps="false"
         android:textSize="34sp"

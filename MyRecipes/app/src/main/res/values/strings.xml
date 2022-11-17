@@ -12,5 +12,6 @@
     <string name="prompt_ingredient_amount">quantity</string>
     <string name="prompt_ingredient_units">units</string>
     <string name="add_ingredient_button">Add Ingredient</string>
+    <string name="grocery_main">Grocery List</string>
 
 </resources>
