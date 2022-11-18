@@ -1,5 +1,6 @@
 package com.bignerdranch.android.myrecipes;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -37,6 +38,7 @@ public class CreateRecipeActivity extends AppCompatActivity {
 
         configureBackToMainButton();
         configureSaveButton();
+        configureBackPressed();
 
         Button addIngredientButton = findViewById(R.id.add_ingredient_button);
         addIngredientButton.setOnClickListener(new View.OnClickListener(){
@@ -49,6 +51,15 @@ public class CreateRecipeActivity extends AppCompatActivity {
         //addIngredient(recyclerView);
 
         configureRecycler(recyclerView);
+    }
+
+    private void configureBackPressed() {
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                finish();
+            }
+        };
     }
 
     @Override
@@ -74,6 +85,8 @@ public class CreateRecipeActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
+
+
 
     private void configureBackToMainButton() {
         Button mainMenuButton = findViewById(R.id.back_to_main_create);

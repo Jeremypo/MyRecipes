@@ -34,6 +34,13 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
     }
 
+    @Override
+    protected void onStart(){
+        configureViewRecipeButton();
+        configureGroceryListButton();
+        super.onStart();
+    }
+
     private void configureCreateRecipeButton() {
         Button createRecipeButton = (Button) findViewById(R.id.create_main);
         createRecipeButton.setOnClickListener(new View.OnClickListener(){
@@ -94,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 inputStream = new ObjectInputStream(new FileInputStream(file));
                 saveData = (HashMap<String, ArrayList<IngredientModel>>)inputStream.readObject();
-                if(saveData.size() > 2)
+                if(saveData.size() > 0)
                     empty = false;
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
