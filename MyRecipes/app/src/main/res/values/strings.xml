@@ -15,5 +15,10 @@
     <string name="grocery_main">Grocery List</string>
     <string name="back_to_view">Back</string>
     <string name="title_view">Saved Recipe(s)</string>
+    <string name="delete_uneditable">Delete</string>
+    <string name="edit_uneditable">Edit</string>
+    <string name="ingredient_unedit"><u>Ingredient</u></string>
+    <string name="quantity_unedit"><u>Quantity</u></string>
+    <string name="units_unedit"><u>Units</u></string>
 
 </resources>

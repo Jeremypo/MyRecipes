@@ -26,9 +26,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecyclerViewAdapter.MyViewHolder>{
-    Context context;
-    ArrayList<RecipeModel> recipeModels;
-    private HashMap<String, ArrayList<IngredientModel>> saveData = new HashMap<>();
+    private Context context;
+    private ArrayList<RecipeModel> recipeModels;
+    private HashMap<String, ArrayList<IngredientModel>> saveData;
 
     public RecipeRecyclerViewAdapter(Context context, ArrayList<RecipeModel> recipeModels){
         this.context = context;
@@ -54,7 +54,22 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
         holder.recipeNameButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                context.startActivity(new Intent(context, EditExistingRecipeActivity.class));
+                Intent i = new Intent(context, ViewUneditableActivity.class);
+                String recipeName = model.getRecipeName().toString();
+
+                System.out.println("Putting: " + recipeName);
+                /*ArrayList<IngredientModel> ingredients = saveData.get(recipeName);
+                for(IngredientModel stuff: ingredients){
+                    System.out.println("\tWith: " +
+                            stuff.getInName() + " " +
+                            stuff.getInQuantity() + " " +
+                            stuff.getInUnits() + " ");
+                }*/
+
+                i.putExtra("recipeName", recipeName);
+                //i.putExtra("ingredients", ingredients);
+
+                context.startActivity(i);
             }
         });
 
@@ -106,7 +121,7 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
             try {
                 inputStream = new ObjectInputStream(new FileInputStream(file));
                 saveData = (HashMap<String, ArrayList<IngredientModel>>)inputStream.readObject();
-                System.out.println("size =" + saveData.size());
+                inputStream.close();
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }

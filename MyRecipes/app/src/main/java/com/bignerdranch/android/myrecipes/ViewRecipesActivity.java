@@ -24,7 +24,7 @@ public class ViewRecipesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_view_recipes);
-        System.out.println("Content Set");
+
         loadSaveData();
 
         RecyclerView recyclerView = findViewById(R.id.recipe_list_view);
@@ -49,7 +49,6 @@ public class ViewRecipesActivity extends AppCompatActivity {
             try {
                 inputStream = new ObjectInputStream(new FileInputStream(file));
                 saveData = (HashMap<String, ArrayList<IngredientModel>>)inputStream.readObject();
-                System.out.println("size =" + saveData.size());
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }

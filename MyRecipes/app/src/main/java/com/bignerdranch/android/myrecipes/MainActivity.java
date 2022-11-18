@@ -22,22 +22,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        loadData();
+
         configureCreateRecipeButton();
         configureViewRecipeButton();
         configureGroceryListButton();
     }
 
+
     @Override
     protected void onResume(){
-        configureViewRecipeButton();
-        configureGroceryListButton();
+        loadData();
         super.onResume();
     }
 
     @Override
     protected void onStart(){
-        configureViewRecipeButton();
-        configureGroceryListButton();
+        loadData();
         super.onStart();
     }
 
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         createRecipeButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                startActivity(new Intent(MainActivity.this, CreateRecipeActivity.class));
+                startActivity(new Intent(MainActivity.this, CreateRecipeActivity.class)) ;
             }
         });
     }
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("Started");
             }
         });
+
         if(noRecipes()){
             viewRecipeButton.setAlpha((float)0.25);
             viewRecipeButton.setClickable(false);
@@ -80,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println(saveData.size());
             }
         });
+
         if(noRecipes()){
             viewRecipeButton.setAlpha((float)0.25);
             viewRecipeButton.setClickable(false);
@@ -91,24 +94,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean noRecipes(){
-        boolean empty = true;
+        loadData();
+        return !(saveData.size() > 0);
+    }
 
+    private void loadData(){
         File file = new File(getDir("data", MODE_PRIVATE), "recipes");
         if(!file.exists())
             System.out.println("file DNE");
         else {
+            System.out.println("file exists");
             ObjectInputStream inputStream = null;
             try {
                 inputStream = new ObjectInputStream(new FileInputStream(file));
+                System.out.println(saveData.size());
                 saveData = (HashMap<String, ArrayList<IngredientModel>>)inputStream.readObject();
-                if(saveData.size() > 0)
-                    empty = false;
+                inputStream.close();
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }
-
-        return empty;
     }
 
 }

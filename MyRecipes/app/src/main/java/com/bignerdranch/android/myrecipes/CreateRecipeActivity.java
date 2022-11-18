@@ -1,21 +1,17 @@
 package com.bignerdranch.android.myrecipes;
 
-import androidx.activity.OnBackPressedCallback;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -29,37 +25,29 @@ public class CreateRecipeActivity extends AppCompatActivity {
     private EditText inputRecipeName;
     private ArrayList<IngredientModel> ingredientModels = new ArrayList<>();
     private HashMap<String, ArrayList<IngredientModel>> saveData = new HashMap<>();
+    private RecyclerView recyclerView;
+    private IngredientRecyclerViewAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_recipe);
 
-        RecyclerView recyclerView = findViewById(R.id.ingredient_list_view);
+        loadSaveData();
+
+        recyclerView = findViewById(R.id.ingredient_list_view);
 
         configureBackToMainButton();
         configureSaveButton();
-        configureBackPressed();
 
         Button addIngredientButton = findViewById(R.id.add_ingredient_button);
         addIngredientButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                addIngredient(recyclerView);
+                addIngredient();
             }
         });
 
-        //addIngredient(recyclerView);
-
-        configureRecycler(recyclerView);
-    }
-
-    private void configureBackPressed() {
-        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
-            @Override
-            public void handleOnBackPressed() {
-                finish();
-            }
-        };
+        configureRecycler();
     }
 
     @Override
@@ -72,14 +60,15 @@ public class CreateRecipeActivity extends AppCompatActivity {
     public void onRestoreInstanceState(Bundle savedInstanceState){
         super.onRestoreInstanceState(savedInstanceState);
         ingredientModels = savedInstanceState.getParcelableArrayList("ingredientModels");
-        RecyclerView recyclerView = findViewById(R.id.ingredient_list_view);
-        configureRecycler(recyclerView);
+
+        recyclerView = findViewById(R.id.ingredient_list_view);
+        configureRecycler();
     }
 
-    private void configureRecycler(RecyclerView recyclerView){
+    private void configureRecycler(){
         inputRecipeName = findViewById(R.id.inputRecipeName);
 
-        IngredientRecyclerViewAdapter adapter = new IngredientRecyclerViewAdapter(this,
+        adapter = new IngredientRecyclerViewAdapter(this,
                 ingredientModels);
 
         recyclerView.setAdapter(adapter);
@@ -132,13 +121,14 @@ public class CreateRecipeActivity extends AppCompatActivity {
         });
     }
 
-    private void addIngredient(RecyclerView recyclerView){
+    private void addIngredient(){
         ingredientModels.add(new IngredientModel());
-        configureRecycler(recyclerView);
+        configureRecycler();
     }
 
-    private void saveRecipe(){
+    private void loadSaveData(){
         File file = new File(getDir("data", MODE_PRIVATE), "recipes");
+
         if(!file.exists())
             System.out.println("file DNE");
         else {
@@ -146,16 +136,47 @@ public class CreateRecipeActivity extends AppCompatActivity {
             try {
                 inputStream = new ObjectInputStream(new FileInputStream(file));
                 saveData = (HashMap<String, ArrayList<IngredientModel>>)inputStream.readObject();
+                inputStream.close();
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void saveAll(){
+        File file = new File(getDir("data", MODE_PRIVATE), "recipes");
+        ObjectOutputStream outputStream = null;
+        try {
+            outputStream = new ObjectOutputStream(new FileOutputStream(file));
+            outputStream.writeObject(saveData);
+            outputStream.flush();
+            outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void saveRecipe(){
+        File file = new File(getDir("data", MODE_PRIVATE), "recipes");
+        /*
+        if(!file.exists())
+            System.out.println("file DNE");
+        else {
+            ObjectInputStream inputStream = null;
+            try {
+                inputStream = new ObjectInputStream(new FileInputStream(file));
+                saveData = (HashMap<String, ArrayList<IngredientModel>>)inputStream.readObject();
+                inputStream.close();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }*/
 
         //if blank string, replaces with default recipe name
         String key = (inputRecipeName.getText().toString().trim().length() == 0) ? "Nameless Recipe" : inputRecipeName.getText().toString();
 
         if(!saveData.containsKey(key)) {
-            saveData.put(key, ingredientModels);
+            saveData.put(key, adapter.getIngredients());
             makeToast("\"" + key + "\" saved.");
         }
         else{
@@ -175,9 +196,9 @@ public class CreateRecipeActivity extends AppCompatActivity {
             builder.setPositiveButton("Save Anyway", new DialogInterface.OnClickListener(){
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    saveData.put(key, ingredientModels);
+                    saveData.put(key, adapter.getIngredients());
                     makeToast("\"" + key + "\" overwritten.");
-                    dialogInterface.cancel();
+                    //dialogInterface.cancel();
                 }
             });
             builder.show();
@@ -193,7 +214,7 @@ public class CreateRecipeActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        System.out.println("Keys:");
+        System.out.println("Keys: " + saveData.size());
         for (String keys: saveData.keySet()){
             System.out.println(keys);
         }

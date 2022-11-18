@@ -16,13 +16,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class IngredientRecyclerViewAdapter extends RecyclerView.Adapter<IngredientRecyclerViewAdapter.MyViewHolder> {
-    Context context;
-    ArrayList<IngredientModel> ingredientModels;
+    private Context context;
+    private ArrayList<IngredientModel> ingredientModels;
 
 
     public IngredientRecyclerViewAdapter(Context context, ArrayList<IngredientModel> ingredientModels){
         this.context = context;
         this.ingredientModels = ingredientModels;
+    }
+
+    public ArrayList<IngredientModel> getIngredients(){
+        return ingredientModels;
     }
 
     @NonNull
@@ -62,7 +66,7 @@ public class IngredientRecyclerViewAdapter extends RecyclerView.Adapter<Ingredie
             public void beforeTextChanged(CharSequence s, int i, int i1, int i2) {}
             @Override
             public void onTextChanged(CharSequence s, int i, int i1, int i2) {
-                ingredientModels.get(holder.getAdapterPosition()).setInName(s.toString());
+                model.setInName(s.toString());
             }
             @Override
             public void afterTextChanged(Editable editable) {}
@@ -74,11 +78,11 @@ public class IngredientRecyclerViewAdapter extends RecyclerView.Adapter<Ingredie
             @Override
             public void onTextChanged(CharSequence s, int i, int i1, int i2) {
                 if(s.length() == 1 && s.charAt(0) == ('.'))
-                    ingredientModels.get(holder.getAdapterPosition()).setInQuantity(s.toString());
+                    model.setInQuantity(s.toString());
                 else if(s.length() > 0)
-                    ingredientModels.get(holder.getAdapterPosition()).setInQuantity(s.toString());
+                    model.setInQuantity(s.toString());
                 else
-                    ingredientModels.get(holder.getAdapterPosition()).setInQuantity("1.0");
+                    model.setInQuantity("1.0");
             }
             @Override
             public void afterTextChanged(Editable editable) {}
@@ -89,7 +93,7 @@ public class IngredientRecyclerViewAdapter extends RecyclerView.Adapter<Ingredie
             public void beforeTextChanged(CharSequence s, int i, int i1, int i2) {}
             @Override
             public void onTextChanged(CharSequence s, int i, int i1, int i2) {
-                ingredientModels.get(holder.getAdapterPosition()).setInUnits(s.toString());
+                model.setInUnits(s.toString());
             }
             @Override
             public void afterTextChanged(Editable editable) {}

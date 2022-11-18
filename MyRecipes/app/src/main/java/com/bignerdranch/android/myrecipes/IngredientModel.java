@@ -2,8 +2,9 @@ package com.bignerdranch.android.myrecipes;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import java.io.Serializable;
 
-public class IngredientModel implements Parcelable {
+public class IngredientModel implements Parcelable, Serializable {
     String inName;
     String inQuantity;
     String inUnits;
@@ -82,7 +83,7 @@ public class IngredientModel implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(inName);
-        if(inQuantity.equals("."))
+        if(inQuantity == null || inQuantity.equals("."))
             parcel.writeString(DEF_QUANTITY);
         else
             parcel.writeString(inQuantity);
