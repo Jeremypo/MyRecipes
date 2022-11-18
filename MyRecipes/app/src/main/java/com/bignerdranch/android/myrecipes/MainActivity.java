@@ -49,8 +49,9 @@ public class MainActivity extends AppCompatActivity {
         viewRecipeButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                //startActivity(new Intent(MainActivity.this, CreateRecipeActivity.class));
-                System.out.println(saveData.size());
+                System.out.println("Starting");
+                startActivity(new Intent(MainActivity.this, ViewRecipesActivity.class));
+                System.out.println("Started");
             }
         });
         if(noRecipes()){

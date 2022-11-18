@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/GitHub/Projects/MyRecipes/app/src/main/res/layout/activity_create_recipe.xml" value="0.33" />
+        <entry key="..\:/GitHub/Projects/MyRecipes/app/src/main/res/layout/activity_create_recipe.xml" value="0.25" />
+        <entry key="..\:/GitHub/Projects/MyRecipes/app/src/main/res/layout/activity_edit_recipe.xml" value="0.14" />
         <entry key="..\:/GitHub/Projects/MyRecipes/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/GitHub/Projects/MyRecipes/app/src/main/res/layout/activity_view_recipes.xml" value="0.1" />
         <entry key="..\:/GitHub/Projects/MyRecipes/app/src/main/res/layout/ingredient_item.xml" value="0.3859375" />
-        <entry key="..\:/GitHub/Projects/MyRecipes/app/src/main/res/layout/ingredient_row_view.xml" value="0.33" />
+        <entry key="..\:/GitHub/Projects/MyRecipes/app/src/main/res/layout/ingredient_row_view.xml" value="0.25" />
+        <entry key="..\:/GitHub/Projects/MyRecipes/app/src/main/res/layout/recipe_row_view.xml" value="0.1" />
       </map>
     </option>
   </component>

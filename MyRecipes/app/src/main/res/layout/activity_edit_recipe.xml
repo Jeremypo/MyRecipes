@@ -4,22 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CreateRecipeActivity">
+    tools:context=".EditExistingRecipeActivity">
 
     <Button
-        android:id="@+id/back_to_main_create"
+        android:id="@+id/back_to_main_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/back_to_main"
+        android:text="@string/back_to_view"
         android:textAllCaps="false"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/save_recipe_create"
+        android:id="@+id/save_recipe_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -32,7 +32,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintHeader"
+        android:id="@+id/constraintHeader_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -41,10 +41,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/add_ingredient_button">
+        app:layout_constraintBottom_toTopOf="@id/add_ingredient_button_edit">
 
         <TextView
-            android:id="@+id/title_create"
+            android:id="@+id/title_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
@@ -57,34 +57,32 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.484" />
 
-        <EditText
-            android:id="@+id/inputRecipeName"
+        <TextView
+            android:id="@+id/saved_recipe_name_edit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/prompt_recipe_name_create"
-            android:inputType="textPersonName"
             android:text=""
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/title_create"
+            app:layout_constraintStart_toEndOf="@+id/title_edit"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintBody"
+        android:id="@+id/constraintBody_edit"
         android:layout_marginVertical="8dp"
         android:layout_marginHorizontal="16dp"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/back_to_main_create"
+        app:layout_constraintBottom_toTopOf="@+id/back_to_main_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_ingredient_button">
+        app:layout_constraintTop_toBottomOf="@+id/add_ingredient_button_edit">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/ingredient_list_view"
+            android:id="@+id/ingredient_list_edit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -97,13 +95,14 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/add_ingredient_button"
+        android:id="@+id/add_ingredient_button_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:text="@string/add_ingredient_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/constraintHeader"
-        app:layout_constraintBottom_toTopOf="@id/constraintBody"/>
+        app:layout_constraintTop_toBottomOf="@id/constraintHeader_edit"
+        app:layout_constraintBottom_toTopOf="@id/constraintBody_edit"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

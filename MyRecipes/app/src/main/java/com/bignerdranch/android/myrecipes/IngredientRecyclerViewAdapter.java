@@ -114,8 +114,6 @@ public class IngredientRecyclerViewAdapter extends RecyclerView.Adapter<Ingredie
             tvQuantity = itemView.findViewById(R.id.quantity_ingredient);
             tvUnits = itemView.findViewById(R.id.unit_ingredient);
             deleteButton = itemView.findViewById(R.id.delete_button);
-
-            //deleteButton.setOnClickListener();
         }
     }
 }

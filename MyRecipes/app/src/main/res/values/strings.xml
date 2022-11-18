@@ -13,5 +13,7 @@
     <string name="prompt_ingredient_units">units</string>
     <string name="add_ingredient_button">Add Ingredient</string>
     <string name="grocery_main">Grocery List</string>
+    <string name="back_to_view">Back</string>
+    <string name="title_view">Saved Recipe(s)</string>
 
 </resources>
