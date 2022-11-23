@@ -105,6 +105,7 @@ public class ViewUneditableActivity extends AppCompatActivity {
                         toast.show();
 
                         removeData(recipeName);
+                        finish();
                     }
                 });
                 builder.show();

@@ -143,36 +143,9 @@ public class CreateRecipeActivity extends AppCompatActivity {
         }
     }
 
-    private void saveAll(){
-        File file = new File(getDir("data", MODE_PRIVATE), "recipes");
-        ObjectOutputStream outputStream = null;
-        try {
-            outputStream = new ObjectOutputStream(new FileOutputStream(file));
-            outputStream.writeObject(saveData);
-            outputStream.flush();
-            outputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     private void saveRecipe(){
         File file = new File(getDir("data", MODE_PRIVATE), "recipes");
-        /*
-        if(!file.exists())
-            System.out.println("file DNE");
-        else {
-            ObjectInputStream inputStream = null;
-            try {
-                inputStream = new ObjectInputStream(new FileInputStream(file));
-                saveData = (HashMap<String, ArrayList<IngredientModel>>)inputStream.readObject();
-                inputStream.close();
-            } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        }*/
 
-        //if blank string, replaces with default recipe name
         String key = (inputRecipeName.getText().toString().trim().length() == 0) ? "Nameless Recipe" : inputRecipeName.getText().toString();
 
         if(!saveData.containsKey(key)) {

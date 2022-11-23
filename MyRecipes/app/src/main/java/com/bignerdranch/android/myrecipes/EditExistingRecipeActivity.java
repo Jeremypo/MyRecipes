@@ -10,7 +10,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.File;
@@ -41,7 +40,7 @@ public class EditExistingRecipeActivity extends AppCompatActivity {
 
         ingredientModels = saveData.get(recipeName);
 
-        recyclerView = findViewById(R.id.ingredient_list_view);
+        recyclerView = findViewById(R.id.ingredient_list_edit);
 
         configureBackToMainButton();
         configureSaveButton();
@@ -74,6 +73,7 @@ public class EditExistingRecipeActivity extends AppCompatActivity {
 
     private void configureRecycler(){
         inputRecipeName = findViewById(R.id.saved_recipe_name_edit);
+        inputRecipeName.setText(recipeName);
 
         adapter = new IngredientRecyclerViewAdapter(this,
                 ingredientModels);
@@ -147,19 +147,6 @@ public class EditExistingRecipeActivity extends AppCompatActivity {
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
-        }
-    }
-
-    private void saveAll(){
-        File file = new File(getDir("data", MODE_PRIVATE), "recipes");
-        ObjectOutputStream outputStream = null;
-        try {
-            outputStream = new ObjectOutputStream(new FileOutputStream(file));
-            outputStream.writeObject(saveData);
-            outputStream.flush();
-            outputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
