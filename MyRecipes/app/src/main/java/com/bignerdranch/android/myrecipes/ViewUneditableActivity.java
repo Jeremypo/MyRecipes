@@ -2,6 +2,7 @@ package com.bignerdranch.android.myrecipes;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -49,6 +50,8 @@ public class ViewUneditableActivity extends AppCompatActivity {
         configureRecycler(recyclerView);
 
         configureBackButton();
+        configureDeleteButton();
+        configureEditButton();
     }
 
     private void configureHeading() {
@@ -110,7 +113,15 @@ public class ViewUneditableActivity extends AppCompatActivity {
     }
 
     private void configureEditButton(){
-
+        Button edit = findViewById(R.id.edit_uneditable);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(context, EditExistingRecipeActivity.class);
+                i.putExtra("recipeName", recipeName);
+                context.startActivity(i);
+            }
+        });
     }
 
     private void loadSaveData() {

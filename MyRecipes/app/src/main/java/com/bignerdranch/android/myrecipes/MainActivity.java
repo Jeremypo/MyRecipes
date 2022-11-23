@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean noRecipes(){
         loadData();
-        return !(saveData.size() > 0);
+        return (saveData.size() == 0);
     }
 
     private void loadData(){

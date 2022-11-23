@@ -23,6 +23,9 @@
             android:name=".ViewUneditableActivity"
             android:exported="false" />
         <activity
+            android:name=".EditExistingRecipeActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
