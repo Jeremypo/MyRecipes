@@ -20,5 +20,6 @@
     <string name="ingredient_unedit"><u>Ingredient</u></string>
     <string name="quantity_unedit"><u>Quantity</u></string>
     <string name="units_unedit"><u>Units</u></string>
+    <string name="title_grocery">Grocery List</string>
 
 </resources>

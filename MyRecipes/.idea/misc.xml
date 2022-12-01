@@ -5,12 +5,14 @@
       <map>
         <entry key="..\:/GitHub/Projects/MyRecipes/app/src/main/res/layout/activity_create_recipe.xml" value="0.25" />
         <entry key="..\:/GitHub/Projects/MyRecipes/app/src/main/res/layout/activity_edit_recipe.xml" value="0.21" />
+        <entry key="..\:/GitHub/Projects/MyRecipes/app/src/main/res/layout/activity_generate_grocery_list.xml" value="0.18840579710144928" />
         <entry key="..\:/GitHub/Projects/MyRecipes/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/GitHub/Projects/MyRecipes/app/src/main/res/layout/activity_view_recipes.xml" value="0.1" />
         <entry key="..\:/GitHub/Projects/MyRecipes/app/src/main/res/layout/activity_view_single_recipe.xml" value="0.33" />
         <entry key="..\:/GitHub/Projects/MyRecipes/app/src/main/res/layout/activity_view_uneditable.xml" value="0.33" />
+        <entry key="..\:/GitHub/Projects/MyRecipes/app/src/main/res/layout/grocery_row_view.xml" value="0.33" />
         <entry key="..\:/GitHub/Projects/MyRecipes/app/src/main/res/layout/ingredient_item.xml" value="0.3859375" />
-        <entry key="..\:/GitHub/Projects/MyRecipes/app/src/main/res/layout/ingredient_row_uneditable.xml" value="0.5" />
+        <entry key="..\:/GitHub/Projects/MyRecipes/app/src/main/res/layout/ingredient_row_uneditable.xml" value="0.29444444444444445" />
         <entry key="..\:/GitHub/Projects/MyRecipes/app/src/main/res/layout/ingredient_row_view.xml" value="0.25" />
         <entry key="..\:/GitHub/Projects/MyRecipes/app/src/main/res/layout/recipe_row_view.xml" value="0.22" />
         <entry key="..\:/GitHub/Projects/MyRecipes/app/src/main/res/layout/uneditable_row_view.xml" value="0.3859375" />
