@@ -13,6 +13,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class GenerateGroceryListActivity extends AppCompatActivity {
@@ -38,10 +39,13 @@ public class GenerateGroceryListActivity extends AppCompatActivity {
         for(String key: saveData.keySet()){
             for(int i = 0; i < saveData.get(key).size(); i++){
                 String ingredient = saveData.get(key).get(i).getInName();
+                ingredient = ingredient.substring(0,1).toUpperCase()
+                        + ingredient.substring(1).toLowerCase();
                 if(!groceryIngredients.contains(ingredient))
                     groceryIngredients.add(ingredient);
             }
         }
+        Collections.sort(groceryIngredients);
     }
 
     private void configureRecycler() {

@@ -4,16 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light"
     tools:context=".GenerateGroceryListActivity">
 
     <Button
         android:id="@+id/back_grocery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="16dp"
+        app:strokeColor="@color/white"
+        app:strokeWidth="4dp"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
         android:text="@string/back_to_view"
-        android:textAllCaps="false"
+        android:textAllCaps="true"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -37,7 +42,7 @@
             android:layout_marginStart="0dp"
             android:gravity="center"
             android:text="@string/title_grocery"
-            android:textSize="24sp"
+            android:textSize="35sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

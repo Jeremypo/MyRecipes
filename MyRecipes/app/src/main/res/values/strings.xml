@@ -3,7 +3,7 @@
     <string name="create_main">Create Recipe</string>
     <string name="view_main">View Recipe(s)</string>
     <string name="title_main">MyRecipes</string>
-    <string name="back_to_main">Main Menu</string>
+    <string name="back_to_main">Back</string>
     <string name="prompt_recipe_name_create">Enter recipe name</string>
     <string name="prompt_ingredient_name">Enter ingredient</string>
     <string name="title_create">Create Recipe</string>
