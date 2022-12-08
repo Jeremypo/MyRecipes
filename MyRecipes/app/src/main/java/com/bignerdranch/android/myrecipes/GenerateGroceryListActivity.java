@@ -39,6 +39,8 @@ public class GenerateGroceryListActivity extends AppCompatActivity {
         for(String key: saveData.keySet()){
             for(int i = 0; i < saveData.get(key).size(); i++){
                 String ingredient = saveData.get(key).get(i).getInName();
+                if(ingredient.equals(""))
+                    ingredient = "Nameless Ingredient";
                 ingredient = ingredient.substring(0,1).toUpperCase()
                         + ingredient.substring(1).toLowerCase();
                 if(!groceryIngredients.contains(ingredient))
