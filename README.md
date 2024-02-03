@@ -1,17 +1,13 @@
 # MyRecipes - Java Mobile Application
 
-MyRecipes is a Java-based mobile application that allows users to discover, save, and organize their favorite recipes. This app provides a user-friendly interface for managing your culinary creations.
+MyRecipes is a Java-based mobile application that allows users to create, save, and organize their favorite recipes. This app provides a user-friendly interface for managing your culinary creations and also allows users to generate a grocery list.
 
 ## Features
 
-- Browse a diverse collection of recipes.
+- Create/Edit recipes.
 - Save your favorite recipes for quick access.
-- Create and organize your own recipe collections.
-- Search for recipes based on ingredients, cuisine, or dietary preferences.
-
-## Screenshots
-
-![MyRecipes App](screenshots/myrecipes_app_screenshot.png)
+- Organize your own recipe collections.
+- Generate grocery list based on selected recipes.
 
 ## Getting Started
 
